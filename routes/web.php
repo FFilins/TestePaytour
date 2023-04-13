@@ -19,3 +19,4 @@ use App\Http\Controllers\CurriculoController;
 // });
 
 Route::get('/' , [CurriculoController::class , 'show'])->name('curriculo.show');
+Route::post('/' , [CurriculoController::class , 'add'])->name('curriculo.add');

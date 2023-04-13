@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('curriculos', function (Blueprint $table) {
             $table->id();
+            $table->string('nome');
+            $table->string('email');
+            $table->string('telefone');
+            $table->string('cargo');
+            $table->char('escolaridade', 30);
+            $table->string('observacoes')->nullable();
+            $table->string('arquivo');
+
+            $table->string('ip');
             $table->timestamps();
         });
     }
