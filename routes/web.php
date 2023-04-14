@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CurriculoController;
+use App\Http\Controllers\EmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,5 @@ use App\Http\Controllers\CurriculoController;
 
 Route::get('/' , [CurriculoController::class , 'show'])->name('curriculo.show');
 Route::post('/' , [CurriculoController::class , 'add'])->name('curriculo.add');
+
+Route::get('/enviar-email' , [Emailcontroller::class, 'enviarEmail'])->name('email.enviar');

@@ -43,8 +43,9 @@ class CurriculoController extends Controller
                 
                 $curriculo->save();
 
+                $id = $curriculo->id;
                 flash('Currículo enviado com sucesso!');
-                return redirect()->back();
+                return redirect()->route('email.enviar')->with(compact('id'));
             }
 
             throw new Exception('Erro: Arquivo não suportado!');
