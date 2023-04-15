@@ -37,7 +37,7 @@ class CurriculoController extends Controller
                 
                 $arquivo = $request->arquivo;
                 $extension = $arquivo->extension();
-                $arquivoName = md5($arquivo->getClientOriginalName() . strtotime("now") . '.' . $extension);
+                $arquivoName = md5($arquivo->getClientOriginalName() . strtotime("now")) . '.' . $extension;
                 $arquivo->move(public_path('arquivos/curriculos'), $arquivoName);
                 $curriculo->arquivo = $arquivoName;
                 
