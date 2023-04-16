@@ -21,5 +21,3 @@ use App\Http\Controllers\EmailController;
 
 Route::get('/' , [CurriculoController::class , 'show'])->name('curriculo.show');
 Route::post('/' , [CurriculoController::class , 'add'])->name('curriculo.add');
-
-Route::get('/enviar-email' , [Emailcontroller::class, 'enviarEmail'])->name('email.enviar');
