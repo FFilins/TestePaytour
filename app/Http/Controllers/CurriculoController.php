@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Curriculo;
-
+use App\UseCases\EnviarCurriculoPorEmail;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -42,10 +42,12 @@ class CurriculoController extends Controller
                 $curriculo->arquivo = $arquivoName;
                 
                 $curriculo->save();
+                $enviarCurriculoPorEmail = new EnviarCurriculoPorEmail($curriculo);
 
-                $id = $curriculo->id;
-                flash('Currículo enviado com sucesso!');
-                return redirect()->route('email.enviar')->with(compact('id'));
+                $enviarCurriculoPorEmail->enviar();
+                // $id = $curriculo->id;
+                // flash('Currículo enviado com sucesso!');
+                // return redirect()->route('email.enviar')->with(compact('id'));
             }
 
             throw new Exception('Erro: Arquivo não suportado!');

@@ -10,18 +10,28 @@ use Exception;
 
 class EmailController extends Controller
 {
+    private string $email;
+
+    public function __contruct() 
+    {
+        $this->email = config('app.email');
+    }
+    
     public function enviarEmail(Request $request) 
     {
         // Configurar a conta para enviar o email no arquivo .env
 
-        $curriculo = Curriculo::where('id', $request->session()->get('id'))->get()->first();
-
         try{
-        //                        vvv  destinatário vvv
-        $enviarEmail = Mail::to('felipe.clayton97@hotmail.com')->send(new SendMail($curriculo));
-        
-        flash('Currículo enviado com sucesso!')->success();
-        return redirect()->intended('/'); 
+            $curriculo = Curriculo::where('id', $request->session()->get('id'))->get()->first();
+
+            if(!$curriculo) {
+                throw new Exception('curriculo não encontrado');
+            }
+            //                         vvv  destinatário  vvv
+            $enviarEmail = Mail::to($this->email)->send(new SendMail($curriculo));
+            
+            flash('Currículo enviado com sucesso!')->success();
+            return redirect()->intended('/'); 
 
         }catch (Exception $e) {
             flash($e->getMessage())->warning();
