@@ -1,22 +1,22 @@
-<h1>Deu tudo certo por aqui!</h1>
+<h1>Curriculo de:</h1>
+<h2>{{$nome}}</h2>
 <br>
-<h3>Nome:</h3>
-<p>{{$nome}}</p>
+<h3 style="display:inline">Email: </h3><span>{{$email}}</span>
 <br>
-<h3>Email:</h3>
-<p>{{$email}}</p>
 <br>
-<h3>Telefone:</h3>
-<p>{{$telefone}}</p>
+<h3 style="display:inline">Telefone: </h3><span>{{$telefone}}</span>
 <br>
-<h3>cargo:</h3>
-<p>{{$cargo}}</p>
 <br>
-<h3>Escolaridade:</h3>
-<p>{{$escolaridade}}</p>
+<h3>cargo: </h3>
+<span>{{$cargo}}</span>
+<br>
+<br>
+<h3 style="display:inline">Escolaridade: </h3><span>{{$escolaridade}}</span>
+<br>
 <br>
 @if(isset($observacoes))
-<h3>Observações:</h3>
-<p>{{$observacoes}}</p>
+<h3>Observações: </h3>
+<span>{{$observacoes}}</span>
+<br>
 <br>
 @endif

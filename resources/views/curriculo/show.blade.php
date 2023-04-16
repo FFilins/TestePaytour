@@ -17,7 +17,8 @@
             </div>
             <div class="form-group">
                 <label for="telefone">Telefone</label>
-                <input type="tel" class="form-control" name="telefone" required placeholder="(xx) xxxxx-xxxx">
+                <input type="tel" maxlength="15" onkeyup="handlePhone(event)"
+                class="form-control" name="telefone" required placeholder="(xx) xxxxx-xxxx">
             </div>
             <div class="form-group">
                 <label for="cargo">Cargo Desejado</label>
@@ -52,5 +53,20 @@
         </form>
     </div>
 </div>
+
+<script>
+    const handlePhone = (event) => {
+        let input = event.target
+        input.value = phoneMask(input.value)
+    }
+
+    const phoneMask = (value) => {
+        if (!value) return ""
+        value = value.replace(/\D/g,'')
+        value = value.replace(/(\d{2})(\d)/,"($1) $2")
+        value = value.replace(/(\d)(\d{4})$/,"$1-$2")
+        return value
+    }
+</script>
 
 @endsection
