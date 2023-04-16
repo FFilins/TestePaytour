@@ -19,6 +19,7 @@ class EnviarCurriculoPorEmail
     {
         $this->curriculo = $curriculo;
 
+        // criar uma chave no .env com o valor sendo o email destinatário
         $this->email = config('app.email');
 
     }

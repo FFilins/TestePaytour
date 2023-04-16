@@ -39,8 +39,6 @@ class CurriculoController extends Controller
             $curriculo->observacoes = $request->observacoes;
             $curriculo->ip = $request->ip();
 
-            // dd($request->ip());
-            // validate file
             if ($request->file('arquivo')->isValid()) {
                 
                 $arquivo = $request->arquivo;
@@ -58,10 +56,7 @@ class CurriculoController extends Controller
                     flash('Currículo enviado com sucesso!');
                     return redirect()->back();
                 }
-                
-                // $id = $curriculo->id;
-                // flash('Currículo enviado com sucesso!');
-                // return redirect()->route('email.enviar')->with(compact('id'));
+
             }else {
                 throw new Exception('Arquivo não é válido!');
             }

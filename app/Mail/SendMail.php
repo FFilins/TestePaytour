@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\Curriculo;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -10,18 +11,19 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
+
 class SendMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $request;
+    private Curriculo $curriculo;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($request)
+    public function __construct(Curriculo $curriculo)
     {
-        $this->request = $request;
+        $this->curriculo = $curriculo;
     
 
     }
@@ -44,12 +46,12 @@ class SendMail extends Mailable
         return new Content(
             view: 'email.message',
             with: [
-                'nome' => $this->request->nome,
-                'email' => $this->request->email,
-                'telefone' => $this->request->telefone,
-                'cargo' => $this->request->cargo,
-                'escolaridade' => $this->request->escolaridade,
-                'observacoes' => $this->request->observacoes,
+                'nome' => $this->curriculo->nome,
+                'email' => $this->curriculo->email,
+                'telefone' => $this->curriculo->telefone,
+                'cargo' => $this->curriculo->cargo,
+                'escolaridade' => $this->curriculo->escolaridade,
+                'observacoes' => $this->curriculo->observacoes,
             ]
         );
     }
@@ -62,7 +64,7 @@ class SendMail extends Mailable
     public function attachments(): array
     {
         return [
-            Attachment::fromPath(public_path('arquivos/curriculos/') . $this->request->arquivo)
+            Attachment::fromPath(public_path('arquivos/curriculos/') . $this->curriculo->arquivo)
         ];
     }
 }
